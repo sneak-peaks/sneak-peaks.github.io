@@ -131,15 +131,15 @@
       opacity: 1;
     }
 
-    /* Ajuste de largura para ui1.png e ui2.png */
+    /* Largura das outras fotos (mantida como está) */
     .gallery-item img:not([src="sneak.png"]) {
-      width: 110%; /* Aumenta a largura relativa das outras fotos */
-      transform: translateX(-5%); /* Centraliza o excedente */
+      width: 110%;
+      transform: translateX(-5%);
     }
 
     /* Altura personalizada para sneak.png */
     .gallery-item img[src="sneak.png"] {
-      height: 320px; /* Aumentado de 300px */
+      height: 340px; /* Aumentado de 320px */
       object-fit: cover;
     }
 
@@ -147,6 +147,25 @@
     .gallery-item video {
       height: 200px;
       object-fit: cover;
+    }
+
+    .video-button {
+      display: block;
+      margin-top: 10px;
+      padding: 8px 15px;
+      background: linear-gradient(90deg, var(--primary-blue), var(--primary-red));
+      color: #fff;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: 600;
+      transition: background 0.3s, transform 0.2s;
+      box-shadow: var(--shadow-light);
+    }
+
+    .video-button:hover {
+      background: linear-gradient(90deg, var(--primary-red), var(--primary-blue));
+      transform: translateY(-2px);
     }
 
     .photos {
@@ -168,7 +187,7 @@
       h1 { font-size: 2.5em; }
       .section-title { font-size: 2em; }
       .gallery-item { flex: 0 0 calc(33.33% - 16.67px); } /* 3 itens por linha */
-      .gallery-item img[src="sneak.png"] { height: 290px; }
+      .gallery-item img[src="sneak.png"] { height: 310px; }
       .gallery-item img:not([src="sneak.png"]), .gallery-item video { height: 180px; }
     }
 
@@ -176,8 +195,7 @@
       h1 { font-size: 2em; }
       .section-title { font-size: 1.8em; }
       .gallery-item { flex: 0 0 calc(50% - 12.5px); } /* 2 itens por linha */
-      .gallery-item img:not([src="sneak.png"]) { width: 105%; transform: translateX(-2.5%); }
-      .gallery-item img[src="sneak.png"] { height: 250px; }
+      .gallery-item img[src="sneak.png"] { height: 270px; }
       .gallery-item img:not([src="sneak.png"]), .gallery-item video { height: 160px; }
       .content { margin: 30px auto; }
     }
@@ -187,8 +205,7 @@
       .section-title { font-size: 1.5em; }
       .gallery { flex-direction: column; }
       .gallery-item { flex: 0 0 100%; }
-      .gallery-item img:not([src="sneak.png"]) { width: 100%; transform: translateX(0); }
-      .gallery-item img[src="sneak.png"] { height: 220px; }
+      .gallery-item img[src="sneak.png"] { height: 240px; }
       .gallery-item img:not([src="sneak.png"]), .gallery-item video { height: 140px; }
       .content { padding: 10px; margin: 20px auto; }
     }
@@ -217,18 +234,21 @@
             <source src="1.mp4" type="video/mp4">
             Seu navegador não suporta vídeo. <a href="1.mp4">Baixe aqui</a>.
           </video>
+          <a href="https://youtube.com/@slaegegd?si=l6hTcjB5vzzSjOmH" target="_blank" class="video-button">Ver Mais Sneak-peaks</a>
         </div>
         <div class="gallery-item">
           <video controls preload="metadata">
             <source src="2.mp4" type="video/mp4">
             Seu navegador não suporta vídeo. <a href="2.mp4">Baixe aqui</a>.
           </video>
+          <a href="https://youtube.com/@slaegegd?si=l6hTcjB5vzzSjOmH" target="_blank" class="video-button">Ver Mais Sneak-peaks</a>
         </div>
         <div class="gallery-item">
           <video controls preload="metadata">
             <source src="3.mp4" type="video/mp4">
             Seu navegador não suporta vídeo. <a href="3.mp4">Baixe aqui</a>.
           </video>
+          <a href="https://youtube.com/@slaegegd?si=l6hTcjB5vzzSjOmH" target="_blank" class="video-button">Ver Mais Sneak-peaks</a>
         </div>
       </div>
     </section>
