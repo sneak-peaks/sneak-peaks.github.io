@@ -1,1 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sneak-peaks</title>
+  <style>
+    :root {
+      --primary-blue: #00bfff;
+      --primary-red: #ff2a2a;
+      --secondary-gold: #ffd700;
+      --dark-gray: #1a1d21;
+      --light-gray: #2c2f33;
+      --bg-gradient: linear-gradient(135deg, #0a0c0e 30%, #1c2126 100%);
+      --shadow-light: 0 4px 15px rgba(0, 0, 0, 0.3);
+      --shadow-hover: 0 8px 25px rgba(0, 191, 255, 0.4);
+      --border-radius: 15px;
+    }
 
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+      background: var(--bg-gradient);
+      color: #f1f1f1;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    header {
+      background: linear-gradient(90deg, var(--dark-gray), #0f1318);
+      padding: 30px 20px;
+      text-align: center;
+      box-shadow: var(--shadow-light);
+      position: relative;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    h1 {
+      font-size: 3em;
+      color: var(--secondary-gold);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+      margin-bottom: 10px;
+    }
+
+    .content {
+      max-width: 1400px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+
+    .section-title {
+      color: var(--primary-blue);
+      font-size: 2.5em;
+      text-align: center;
+      margin-bottom: 30px;
+      position: relative;
+      padding-bottom: 10px;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 3px;
+      background: var(--secondary-gold);
+      animation: pulse 2s infinite;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      justify-items: center;
+    }
+
+    .gallery-item {
+      background: var(--light-gray);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-light);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      position: relative;
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .gallery-item img,
+    .gallery-item video {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+      transition: opacity 0.3s ease;
+    }
+
+    .gallery-item video {
+      outline: none;
+    }
+
+    .gallery-item video::-webkit-media-controls {
+      background: rgba(0, 0, 0, 0.8);
+      border-radius: 0 0 var(--border-radius) var(--border-radius);
+    }
+
+    .gallery-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, rgba(0, 191, 255, 0.1), rgba(255, 42, 42, 0.1));
+      z-index: 1;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .gallery-item:hover::before {
+      opacity: 1;
+    }
+
+    .photos {
+      margin-bottom: 50px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes pulse {
+      0% { width: 50px; }
+      50% { width: 70px; }
+      100% { width: 50px; }
+    }
+
+    @media (max-width: 1024px) {
+      h1 { font-size: 2.5em; }
+      .section-title { font-size: 2em; }
+      .gallery { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+      .gallery-item img, .gallery-item video { height: 180px; }
+    }
+
+    @media (max-width: 768px) {
+      h1 { font-size: 2em; }
+      .section-title { font-size: 1.8em; }
+      .gallery { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+      .gallery-item img, .gallery-item video { height: 160px; }
+      .content { margin: 30px auto; }
+    }
+
+    @media (max-width: 480px) {
+      h1 { font-size: 1.5em; }
+      .section-title { font-size: 1.5em; }
+      .gallery { grid-template-columns: 1fr; gap: 15px; }
+      .gallery-item img, .gallery-item video { height: 140px; }
+      .content { padding: 10px; margin: 20px auto; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Sneak-peaks</h1>
+  </header>
+
+  <div class="content">
+    <section class="photos">
+      <h2 class="section-title">Fotos</h2>
+      <div class="gallery">
+        <div class="gallery-item"><img src="sneak.png" alt="Sneak Peak Sneak"></div>
+        <div class="gallery-item"><img src="ui1.png" alt="Sneak Peak UI 1"></div>
+        <div class="gallery-item"><img src="ui2.png" alt="Sneak Peak UI 2"></div>
+      </div>
+    </section>
+
+    <section class="videos">
+      <h2 class="section-title">Vídeos</h2>
+      <div class="gallery">
+        <div class="gallery-item"><video src="1.mp4" controls poster="thumb1.jpg"></video></div>
+        <div class="gallery-item"><video src="2.mp4" controls poster="thumb2.jpg"></video></div>
+        <div class="gallery-item"><video src="3.mp4" controls poster="thumb3.jpg"></video></div>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
