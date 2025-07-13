@@ -77,10 +77,10 @@
     }
 
     .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      display: flex; /* Mudança pra alinhar horizontalmente no PC */
+      flex-wrap: wrap; /* Permite quebra em mobile */
       gap: 25px;
-      justify-items: center;
+      justify-content: center;
     }
 
     .gallery-item {
@@ -90,6 +90,7 @@
       box-shadow: var(--shadow-light);
       transition: transform 0.4s ease, box-shadow 0.4s ease;
       position: relative;
+      flex: 0 0 calc(25% - 18.75px); /* 4 itens por linha no PC, ajustando gap */
     }
 
     .gallery-item:hover {
@@ -132,7 +133,7 @@
 
     /* Altura personalizada para sneak.png */
     .gallery-item img[src="sneak.png"] {
-      height: 250px;
+      height: 300px; /* Aumentado de 250px */
       object-fit: cover;
     }
 
@@ -160,16 +161,16 @@
     @media (max-width: 1024px) {
       h1 { font-size: 2.5em; }
       .section-title { font-size: 2em; }
-      .gallery { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
-      .gallery-item img[src="sneak.png"] { height: 220px; }
+      .gallery-item { flex: 0 0 calc(33.33% - 16.67px); } /* 3 itens por linha */
+      .gallery-item img[src="sneak.png"] { height: 270px; }
       .gallery-item img:not([src="sneak.png"]), .gallery-item video { height: 180px; }
     }
 
     @media (max-width: 768px) {
       h1 { font-size: 2em; }
       .section-title { font-size: 1.8em; }
-      .gallery { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
-      .gallery-item img[src="sneak.png"] { height: 190px; }
+      .gallery-item { flex: 0 0 calc(50% - 12.5px); } /* 2 itens por linha */
+      .gallery-item img[src="sneak.png"] { height: 230px; }
       .gallery-item img:not([src="sneak.png"]), .gallery-item video { height: 160px; }
       .content { margin: 30px auto; }
     }
@@ -177,8 +178,9 @@
     @media (max-width: 480px) {
       h1 { font-size: 1.5em; }
       .section-title { font-size: 1.5em; }
-      .gallery { grid-template-columns: 1fr; gap: 15px; }
-      .gallery-item img[src="sneak.png"] { height: 180px; }
+      .gallery { flex-direction: column; } /* 1 item por linha */
+      .gallery-item { flex: 0 0 100%; }
+      .gallery-item img[src="sneak.png"] { height: 200px; }
       .gallery-item img:not([src="sneak.png"]), .gallery-item video { height: 140px; }
       .content { padding: 10px; margin: 20px auto; }
     }
@@ -203,21 +205,21 @@
       <h2 class="section-title">Vídeos</h2>
       <div class="gallery">
         <div class="gallery-item">
-          <video controls>
+          <video controls preload="metadata">
             <source src="1.mp4" type="video/mp4">
-            Seu navegador não suporta vídeo.
+            Seu navegador não suporta vídeo. <a href="1.mp4">Baixe aqui</a>.
           </video>
         </div>
         <div class="gallery-item">
-          <video controls>
+          <video controls preload="metadata">
             <source src="2.mp4" type="video/mp4">
-            Seu navegador não suporta vídeo.
+            Seu navegador não suporta vídeo. <a href="2.mp4">Baixe aqui</a>.
           </video>
         </div>
         <div class="gallery-item">
-          <video controls>
+          <video controls preload="metadata">
             <source src="3.mp4" type="video/mp4">
-            Seu navegador não suporta vídeo.
+            Seu navegador não suporta vídeo. <a href="3.mp4">Baixe aqui</a>.
           </video>
         </div>
       </div>
