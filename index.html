@@ -100,8 +100,6 @@
     .gallery-item img,
     .gallery-item video {
       width: 100%;
-      height: 200px;
-      object-fit: cover;
       display: block;
       transition: opacity 0.3s ease;
     }
@@ -132,6 +130,18 @@
       opacity: 1;
     }
 
+    /* Altura personalizada para sneak.png */
+    .gallery-item img[src="sneak.png"] {
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .gallery-item img:not([src="sneak.png"]),
+    .gallery-item video {
+      height: 200px;
+      object-fit: cover;
+    }
+
     .photos {
       margin-bottom: 50px;
     }
@@ -151,14 +161,16 @@
       h1 { font-size: 2.5em; }
       .section-title { font-size: 2em; }
       .gallery { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
-      .gallery-item img, .gallery-item video { height: 180px; }
+      .gallery-item img[src="sneak.png"] { height: 220px; }
+      .gallery-item img:not([src="sneak.png"]), .gallery-item video { height: 180px; }
     }
 
     @media (max-width: 768px) {
       h1 { font-size: 2em; }
       .section-title { font-size: 1.8em; }
       .gallery { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
-      .gallery-item img, .gallery-item video { height: 160px; }
+      .gallery-item img[src="sneak.png"] { height: 190px; }
+      .gallery-item img:not([src="sneak.png"]), .gallery-item video { height: 160px; }
       .content { margin: 30px auto; }
     }
 
@@ -166,7 +178,8 @@
       h1 { font-size: 1.5em; }
       .section-title { font-size: 1.5em; }
       .gallery { grid-template-columns: 1fr; gap: 15px; }
-      .gallery-item img, .gallery-item video { height: 140px; }
+      .gallery-item img[src="sneak.png"] { height: 180px; }
+      .gallery-item img:not([src="sneak.png"]), .gallery-item video { height: 140px; }
       .content { padding: 10px; margin: 20px auto; }
     }
   </style>
@@ -189,9 +202,24 @@
     <section class="videos">
       <h2 class="section-title">Vídeos</h2>
       <div class="gallery">
-        <div class="gallery-item"><video src="1.mp4" controls poster="thumb1.jpg"></video></div>
-        <div class="gallery-item"><video src="2.mp4" controls poster="thumb2.jpg"></video></div>
-        <div class="gallery-item"><video src="3.mp4" controls poster="thumb3.jpg"></video></div>
+        <div class="gallery-item">
+          <video controls>
+            <source src="1.mp4" type="video/mp4">
+            Seu navegador não suporta vídeo.
+          </video>
+        </div>
+        <div class="gallery-item">
+          <video controls>
+            <source src="2.mp4" type="video/mp4">
+            Seu navegador não suporta vídeo.
+          </video>
+        </div>
+        <div class="gallery-item">
+          <video controls>
+            <source src="3.mp4" type="video/mp4">
+            Seu navegador não suporta vídeo.
+          </video>
+        </div>
       </div>
     </section>
   </div>
