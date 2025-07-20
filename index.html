@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>Sneak-peaks</title>
   <style>
     :root {
@@ -10,126 +10,94 @@
       --primary-red: #ff2a2a;
       --secondary-gold: #ffd700;
       --dark-gray: #1a1d21;
-      --light-gray: #2c2f33;
       --bg-gradient: linear-gradient(135deg, #0a0c0e 30%, #1c2126 100%);
       --shadow-light: 0 4px 15px rgba(0, 0, 0, 0.3);
       --shadow-hover: 0 8px 25px rgba(0, 191, 255, 0.4);
       --border-radius: 15px;
+      --btn-bg: var(--primary-blue);
+      --btn-hover-bg: #008ccc;
+      --font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
     }
 
-    * {
+    *, *::before, *::after {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
     body {
-      font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+      font-family: var(--font-family);
       background: var(--bg-gradient);
       color: #f1f1f1;
       line-height: 1.6;
       overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 15px 40px 15px;
+      text-align: center;
     }
 
     header {
       background: linear-gradient(90deg, var(--dark-gray), #0f1318);
       padding: 30px 20px;
-      text-align: center;
       box-shadow: var(--shadow-light);
-      position: relative;
+      border-radius: var(--border-radius);
+      width: 100%;
+      max-width: 1400px;
       animation: fadeIn 1s ease-in-out;
+      user-select: none;
+      margin-bottom: 40px;
     }
 
     h1 {
-      font-size: 3em;
+      font-size: 3rem;
       color: var(--secondary-gold);
       text-transform: uppercase;
       letter-spacing: 2px;
       text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
-      margin-bottom: 10px;
+      margin-bottom: 0;
     }
 
-    .content {
-      max-width: 1400px;
-      margin: 40px auto;
-      padding: 20px;
-    }
-
-    .section-title {
-      color: var(--primary-blue);
-      font-size: 2.5em;
-      text-align: center;
-      margin-bottom: 30px;
-      position: relative;
-      padding-bottom: 10px;
-    }
-
-    .section-title::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 50px;
-      height: 3px;
-      background: var(--secondary-gold);
-      animation: pulse 2s infinite;
-    }
-
-    .gallery {
+    .button-container {
       display: flex;
-      flex-wrap: wrap;
-      gap: 25px;
       justify-content: center;
+      gap: 25px;
+      flex-wrap: wrap;
+      max-width: 400px;
+      width: 100%;
     }
 
-    .gallery-item {
-      background: var(--light-gray);
+    button {
+      background-color: var(--btn-bg);
+      border: none;
+      color: white;
+      padding: 16px 32px;
+      font-size: 1.25rem;
       border-radius: var(--border-radius);
-      overflow: hidden;
+      cursor: pointer;
       box-shadow: var(--shadow-light);
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
-      position: relative;
-      flex: 0 0 calc(25% - 18.75px);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+      min-width: 140px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      user-select: none;
     }
 
-    .gallery-item:hover {
-      transform: translateY(-10px) scale(1.05);
+    button:hover,
+    button:focus {
+      background-color: var(--btn-hover-bg);
       box-shadow: var(--shadow-hover);
+      transform: translateY(-3px);
+      outline: none;
     }
 
-    .gallery-item img {
-      width: 100%;
-      display: block;
-      transition: opacity 0.3s ease;
-      object-fit: cover;
-    }
-
-    .gallery-item::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(45deg, rgba(0, 191, 255, 0.1), rgba(255, 42, 42, 0.1));
-      z-index: 1;
-      opacity: 0;
-      transition: opacity 0.4s ease;
-    }
-
-    .gallery-item:hover::before {
-      opacity: 1;
-    }
-
-    .gallery-item img[src="sneak.png"] {
-      height: 380px;
-    }
-
-    .gallery-item img:not([src="sneak.png"]) {
-      width: 110%;
-      height: 200px;
-      transform: translateX(-5%);
+    button:active {
+      transform: translateY(0);
+      box-shadow: var(--shadow-light);
     }
 
     @keyframes fadeIn {
@@ -137,34 +105,22 @@
       to { opacity: 1; }
     }
 
-    @keyframes pulse {
-      0% { width: 50px; }
-      50% { width: 70px; }
-      100% { width: 50px; }
-    }
-
-    @media (max-width: 1024px) {
-      h1 { font-size: 2.5em; }
-      .section-title { font-size: 2em; }
-      .gallery-item { flex: 0 0 calc(33.33% - 16.67px); }
-      .gallery-item img[src="sneak.png"] { height: 340px; }
-    }
-
-    @media (max-width: 768px) {
-      h1 { font-size: 2em; }
-      .section-title { font-size: 1.8em; }
-      .gallery-item { flex: 0 0 calc(50% - 12.5px); }
-      .gallery-item img[src="sneak.png"] { height: 300px; }
-      .content { margin: 30px auto; }
-    }
-
     @media (max-width: 480px) {
-      h1 { font-size: 1.5em; }
-      .section-title { font-size: 1.5em; }
-      .gallery { flex-direction: column; }
-      .gallery-item { flex: 0 0 100%; }
-      .gallery-item img[src="sneak.png"] { height: 270px; }
-      .content { padding: 10px; margin: 20px auto; }
+      h1 {
+        font-size: 2rem;
+      }
+      .button-container {
+        flex-direction: column;
+        gap: 18px;
+        max-width: 100%;
+      }
+      button {
+        width: 100%;
+        max-width: 320px;
+        font-size: 1.1rem;
+        padding: 14px 20px;
+        min-width: unset;
+      }
     }
   </style>
 </head>
@@ -173,23 +129,22 @@
     <h1>Sneak-peaks</h1>
   </header>
 
-  <div class="content">
-    <section class="photos">
-      <h2 class="section-title">Fotos</h2>
-      <div class="gallery">
-        <div class="gallery-item"><img src="sneak.png" alt="Sneak Peak Sneak"></div>
-        <div class="gallery-item"><img src="ui1.png" alt="Sneak Peak UI 1"></div>
-        <div class="gallery-item"><img src="ui2.png" alt="Sneak Peak UI 2"></div>
-        <div class="gallery-item"><img src="Diogo.png" alt="Sneak Peak Diogo"></div>
-        <div class="gallery-item"><img src="Espada.png" alt="Sneak Peak Espada"></div>
-        <div class="gallery-item"><img src="Imagem15.png" alt="Sneak Peak Imagem 15"></div>
-        <div class="gallery-item"><img src="Imagem33.png" alt="Sneak Peak Imagem 33"></div>
-        <div class="gallery-item"><img src="Imagem4.png" alt="Sneak Peak Imagem 4"></div>
-        <div class="gallery-item"><img src="Modric.png" alt="Sneak Peak Modric"></div>
-        <div class="gallery-item"><img src="Sla.png" alt="Sneak Peak Sla"></div>
-        <div class="gallery-item"><img src="image.png" alt="Sneak Peak Image"></div>
-      </div>
-    </section>
+  <div class="button-container">
+    <button id="btn-fotos" aria-label="Ir para fotos TikTok">Fotos</button>
+    <button id="btn-videos" aria-label="Ir para vídeos YouTube">Vídeos</button>
   </div>
+
+  <script>
+    const btnFotos = document.getElementById('btn-fotos');
+    const btnVideos = document.getElementById('btn-videos');
+
+    btnFotos.addEventListener('click', () => {
+      window.open('https://tiktok.com/@sneakpeaks6', '_blank', 'noopener,noreferrer');
+    });
+
+    btnVideos.addEventListener('click', () => {
+      window.open('https://www.youtube.com/@SlaEgegd', '_blank', 'noopener,noreferrer');
+    });
+  </script>
 </body>
 </html>
