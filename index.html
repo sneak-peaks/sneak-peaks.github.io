@@ -1,128 +1,147 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-  <title>Sneak-peaks</title>
-  <style>
-    :root {
-      --primary-blue: #00bfff;
-      --primary-red: #ff2a2a;
-      --secondary-gold: #ffd700;
-      --dark-gray: #1a1d21;
-      --bg-gradient: linear-gradient(135deg, #0a0c0e 30%, #1c2126 100%);
-      --shadow-light: 0 4px 15px rgba(0, 0, 0, 0.3);
-      --shadow-hover: 0 8px 25px rgba(0, 191, 255, 0.4);
-      --border-radius: 15px;
-      --btn-bg: var(--primary-blue);
-      --btn-hover-bg: #008ccc;
-      --font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<title>Sneak-peaks</title>
+<style>
+  :root {
+    --primary-blue: #00bfff;
+    --primary-red: #ff2a2a;
+    --secondary-gold: #ffd700;
+    --dark-gray: #1a1d21;
+    --bg-gradient: linear-gradient(135deg, #0a0c0e 30%, #1c2126 100%);
+    --shadow-light: 0 4px 15px rgba(0, 0, 0, 0.3);
+    --shadow-hover: 0 8px 25px rgba(0, 191, 255, 0.4);
+    --border-radius: 15px;
+    --btn-bg: var(--primary-blue);
+    --btn-hover-bg: #008ccc;
+    --font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+  }
 
-    *, *::before, *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+  *, *::before, *::after {
+    margin: 0; padding: 0; box-sizing: border-box;
+  }
 
-    body {
-      font-family: var(--font-family);
-      background: var(--bg-gradient);
-      color: #f1f1f1;
-      line-height: 1.6;
-      overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 20px 15px 40px 15px;
-      text-align: center;
-    }
+  body {
+    font-family: var(--font-family);
+    background: var(--bg-gradient);
+    color: #f1f1f1;
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 15px 40px 15px;
+    text-align: center;
+  }
 
-    header {
-      background: linear-gradient(90deg, var(--dark-gray), #0f1318);
-      padding: 30px 20px;
-      box-shadow: var(--shadow-light);
-      border-radius: var(--border-radius);
-      width: 100%;
-      max-width: 1400px;
-      animation: fadeIn 1s ease-in-out;
-      user-select: none;
-      margin-bottom: 40px;
-    }
+  header {
+    background: linear-gradient(90deg, var(--dark-gray), #0f1318);
+    padding: 30px 20px;
+    box-shadow: var(--shadow-light);
+    border-radius: var(--border-radius);
+    width: 100%;
+    max-width: 1400px;
+    animation: fadeIn 1s ease-in-out;
+    user-select: none;
+    margin-bottom: 40px;
+  }
 
+  h1 {
+    font-size: 3rem;
+    color: var(--secondary-gold);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+    margin-bottom: 0;
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: nowrap;
+    max-width: 480px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  button {
+    position: relative;
+    background-color: var(--btn-bg);
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    font-size: 1.25rem;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    box-shadow: var(--shadow-light);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+    min-width: 140px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    user-select: none;
+    overflow: hidden;
+    z-index: 0;
+  }
+
+  button:hover,
+  button:focus {
+    background-color: var(--btn-hover-bg);
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-3px);
+    outline: none;
+  }
+
+  button:active {
+    transform: translateY(0);
+    box-shadow: var(--shadow-light);
+  }
+
+  .ripple {
+    position: absolute;
+    border-radius: 50%;
+    transform: scale(0);
+    animation: ripple-effect 600ms linear;
+    pointer-events: none;
+    opacity: 0.75;
+    z-index: 10;
+  }
+
+  @keyframes ripple-effect {
+    to {
+      transform: scale(4);
+      opacity: 0;
+    }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @media (max-width: 480px) {
     h1 {
-      font-size: 3rem;
-      color: var(--secondary-gold);
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
-      margin-bottom: 0;
+      font-size: 2rem;
     }
-
     .button-container {
-      display: flex;
-      justify-content: center;
-      gap: 25px;
-      flex-wrap: wrap;
-      max-width: 400px;
-      width: 100%;
+      flex-direction: column;
+      gap: 18px;
+      max-width: 100%;
     }
-
     button {
-      background-color: var(--btn-bg);
-      border: none;
-      color: white;
-      padding: 16px 32px;
-      font-size: 1.25rem;
-      border-radius: var(--border-radius);
-      cursor: pointer;
-      box-shadow: var(--shadow-light);
-      transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
-      min-width: 140px;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      user-select: none;
+      width: 100%;
+      max-width: 320px;
+      font-size: 1.1rem;
+      padding: 14px 20px;
+      min-width: unset;
     }
-
-    button:hover,
-    button:focus {
-      background-color: var(--btn-hover-bg);
-      box-shadow: var(--shadow-hover);
-      transform: translateY(-3px);
-      outline: none;
-    }
-
-    button:active {
-      transform: translateY(0);
-      box-shadow: var(--shadow-light);
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    @media (max-width: 480px) {
-      h1 {
-        font-size: 2rem;
-      }
-      .button-container {
-        flex-direction: column;
-        gap: 18px;
-        max-width: 100%;
-      }
-      button {
-        width: 100%;
-        max-width: 320px;
-        font-size: 1.1rem;
-        padding: 14px 20px;
-        min-width: unset;
-      }
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
   <header>
@@ -135,15 +154,43 @@
   </div>
 
   <script>
+    function createRipple(event, color) {
+      const button = event.currentTarget;
+      const circle = document.createElement('span');
+      const diameter = Math.max(button.clientWidth, button.clientHeight);
+      const radius = diameter / 2;
+
+      circle.style.width = circle.style.height = diameter + 'px';
+      circle.style.left = event.clientX - button.getBoundingClientRect().left - radius + 'px';
+      circle.style.top = event.clientY - button.getBoundingClientRect().top - radius + 'px';
+      circle.style.backgroundColor = color;
+      circle.classList.add('ripple');
+
+      const ripple = button.getElementsByClassName('ripple')[0];
+      if (ripple) ripple.remove();
+
+      button.appendChild(circle);
+
+      setTimeout(() => {
+        circle.remove();
+      }, 600);
+    }
+
     const btnFotos = document.getElementById('btn-fotos');
     const btnVideos = document.getElementById('btn-videos');
 
-    btnFotos.addEventListener('click', () => {
-      window.open('https://tiktok.com/@sneakpeaks6', '_blank', 'noopener,noreferrer');
+    btnFotos.addEventListener('click', e => {
+      createRipple(e, 'rgba(0, 191, 255, 0.6)');
+      setTimeout(() => {
+        window.open('https://tiktok.com/@sneakpeaks6', '_blank', 'noopener,noreferrer');
+      }, 200);
     });
 
-    btnVideos.addEventListener('click', () => {
-      window.open('https://www.youtube.com/@SlaEgegd', '_blank', 'noopener,noreferrer');
+    btnVideos.addEventListener('click', e => {
+      createRipple(e, 'rgba(255, 42, 42, 0.6)');
+      setTimeout(() => {
+        window.open('https://www.youtube.com/@SlaEgegd', '_blank', 'noopener,noreferrer');
+      }, 200);
     });
   </script>
 </body>
