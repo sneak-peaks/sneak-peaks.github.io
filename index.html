@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 <title>Sneak-peaks</title>
 <style>
   :root {
@@ -27,14 +27,16 @@
     font-family: var(--font-family);
     background: var(--bg-gradient);
     color: #f1f1f1;
-    min-height: 100vh;
+    line-height: 1.6;
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 20px 15px 40px 15px;
     text-align: center;
-    position: relative;
   }
 
   header {
@@ -44,9 +46,9 @@
     border-radius: var(--border-radius);
     width: 100%;
     max-width: 1400px;
-    margin-bottom: 40px;
     animation: fadeIn 1s ease-in-out;
     user-select: none;
+    margin-bottom: 40px;
   }
 
   h1 {
@@ -55,6 +57,7 @@
     text-transform: uppercase;
     letter-spacing: 2px;
     text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+    margin-bottom: 0;
   }
 
   .button-container {
@@ -64,6 +67,7 @@
     flex-wrap: nowrap;
     max-width: 480px;
     width: 100%;
+    margin: 0 auto;
   }
 
   button {
@@ -98,15 +102,14 @@
     box-shadow: var(--shadow-light);
   }
 
-  .ripple,
-  .global-ripple {
+  .ripple {
     position: absolute;
     border-radius: 50%;
     transform: scale(0);
     animation: ripple-effect 600ms linear;
     pointer-events: none;
     opacity: 0.75;
-    z-index: 9999;
+    z-index: 10;
   }
 
   @keyframes ripple-effect {
@@ -141,54 +144,54 @@
 </style>
 </head>
 <body>
-<header>
-  <h1>Sneak-peaks</h1>
-</header>
+  <header>
+    <h1>Sneak-peaks</h1>
+  </header>
 
-<div class="button-container">
-  <button id="btn-fotos">Fotos</button>
-  <button id="btn-videos">Vídeos</button>
-</div>
+  <div class="button-container">
+    <button id="btn-fotos" aria-label="Ir para fotos TikTok">Fotos</button>
+    <button id="btn-videos" aria-label="Ir para vídeos YouTube">Vídeos</button>
+  </div>
 
-<script>
-  function createRipple(event, color, targetElement, className) {
-    const circle = document.createElement('span');
-    const diameter = 120;
-    circle.style.width = circle.style.height = diameter + 'px';
-    circle.style.left = event.clientX - diameter / 2 + 'px';
-    circle.style.top = event.clientY - diameter / 2 + 'px';
-    circle.style.backgroundColor = color;
-    circle.classList.add(className);
+  <script>
+    function createRipple(event, color) {
+      const button = event.currentTarget;
+      const circle = document.createElement('span');
+      const diameter = Math.max(button.clientWidth, button.clientHeight);
+      const radius = diameter / 2;
 
-    targetElement.appendChild(circle);
+      circle.style.width = circle.style.height = diameter + 'px';
+      circle.style.left = event.clientX - button.getBoundingClientRect().left - radius + 'px';
+      circle.style.top = event.clientY - button.getBoundingClientRect().top - radius + 'px';
+      circle.style.backgroundColor = color;
+      circle.classList.add('ripple');
 
-    setTimeout(() => {
-      circle.remove();
-    }, 600);
-  }
+      const ripple = button.getElementsByClassName('ripple')[0];
+      if (ripple) ripple.remove();
 
-  const btnFotos = document.getElementById('btn-fotos');
-  const btnVideos = document.getElementById('btn-videos');
+      button.appendChild(circle);
 
-  btnFotos.addEventListener('click', e => {
-    createRipple(e, 'rgba(0, 191, 255, 0.6)', btnFotos, 'ripple');
-    setTimeout(() => {
-      window.open('https://tiktok.com/@sneakpeaks6', '_blank', 'noopener,noreferrer');
-    }, 200);
-  });
+      setTimeout(() => {
+        circle.remove();
+      }, 600);
+    }
 
-  btnVideos.addEventListener('click', e => {
-    createRipple(e, 'rgba(255, 42, 42, 0.6)', btnVideos, 'ripple');
-    setTimeout(() => {
-      window.open('https://www.youtube.com/@SlaEgegd', '_blank', 'noopener,noreferrer');
-    }, 200);
-  });
+    const btnFotos = document.getElementById('btn-fotos');
+    const btnVideos = document.getElementById('btn-videos');
 
-  document.body.addEventListener('click', e => {
-    const colors = ['rgba(0,191,255,0.3)', 'rgba(255,42,42,0.3)'];
-    const randomColor = colors[Math.floor(Math.random() * colors.length)];
-    createRipple(e, randomColor, document.body, 'global-ripple');
-  });
-</script>
+    btnFotos.addEventListener('click', e => {
+      createRipple(e, 'rgba(0, 191, 255, 0.6)');
+      setTimeout(() => {
+        window.open('https://tiktok.com/@sneakpeaks6', '_blank', 'noopener,noreferrer');
+      }, 200);
+    });
+
+    btnVideos.addEventListener('click', e => {
+      createRipple(e, 'rgba(255, 42, 42, 0.6)');
+      setTimeout(() => {
+        window.open('https://www.youtube.com/@SlaEgegd', '_blank', 'noopener,noreferrer');
+      }, 200);
+    });
+  </script>
 </body>
 </html>
