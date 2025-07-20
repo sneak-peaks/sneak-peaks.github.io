@@ -65,7 +65,6 @@
   }
 
   button {
-    position: relative;
     background: linear-gradient(135deg, var(--primary-blue), var(--primary-red));
     border: none;
     color: white;
@@ -92,24 +91,6 @@
   button:active {
     transform: translateY(0) scale(0.98);
     box-shadow: 0 4px 10px rgba(255, 42, 42, 0.3);
-  }
-
-  .ripple,
-  .global-ripple {
-    position: absolute;
-    border-radius: 50%;
-    transform: scale(0);
-    animation: ripple-effect 600ms linear;
-    pointer-events: none;
-    opacity: 0.75;
-    z-index: 9999;
-  }
-
-  @keyframes ripple-effect {
-    to {
-      transform: scale(4);
-      opacity: 0;
-    }
   }
 
   @keyframes fadeIn {
@@ -141,49 +122,8 @@
 </header>
 
 <div class="button-container">
-  <button id="btn-fotos">Fotos</button>
-  <button id="btn-videos">Vídeos</button>
+  <button onclick="window.open('https://tiktok.com/@sneakpeaks6', '_blank')">Fotos</button>
+  <button onclick="window.open('https://www.youtube.com/@SlaEgegd', '_blank')">Vídeos</button>
 </div>
-
-<script>
-  function createRipple(event, color, targetElement, className) {
-    const circle = document.createElement('span');
-    const diameter = 120;
-    circle.style.width = circle.style.height = diameter + 'px';
-    circle.style.left = event.clientX - diameter / 2 + 'px';
-    circle.style.top = event.clientY - diameter / 2 + 'px';
-    circle.style.backgroundColor = color;
-    circle.classList.add(className);
-
-    targetElement.appendChild(circle);
-
-    setTimeout(() => {
-      circle.remove();
-    }, 600);
-  }
-
-  const btnFotos = document.getElementById('btn-fotos');
-  const btnVideos = document.getElementById('btn-videos');
-
-  btnFotos.addEventListener('click', e => {
-    createRipple(e, 'rgba(0, 191, 255, 0.6)', btnFotos, 'ripple');
-    setTimeout(() => {
-      window.open('https://tiktok.com/@sneakpeaks6', '_blank', 'noopener,noreferrer');
-    }, 200);
-  });
-
-  btnVideos.addEventListener('click', e => {
-    createRipple(e, 'rgba(255, 42, 42, 0.6)', btnVideos, 'ripple');
-    setTimeout(() => {
-      window.open('https://www.youtube.com/@SlaEgegd', '_blank', 'noopener,noreferrer');
-    }, 200);
-  });
-
-  document.body.addEventListener('click', e => {
-    const colors = ['rgba(0,191,255,0.3)', 'rgba(255,42,42,0.3)'];
-    const randomColor = colors[Math.floor(Math.random() * colors.length)];
-    createRipple(e, randomColor, document.body, 'global-ripple');
-  });
-</script>
 </body>
 </html>
