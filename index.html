@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoidDrake By DeathTeam - Gerador de Scripts Roblox</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <i class="fas fa-dragon logo-icon primary-color"></i>
+                <i class="fas fa-skull logo-icon secondary-color"></i>
+                <h1>VoidDrake By DeathTeam</h1>
+            </div>
+            <p class="credits">𝔇𝖊𝖆𝖙𝖍𝖇𝖗𝖎𝖓𝖌𝖊𝖗🇮🇹(diretor/funcionalidades), Beto(designer), Arthur(designer principal)</p>
+            <span class="badge"><i class="fas fa-bolt"></i> Gerador Universal</span>
+        </header>
+
+        <main>
+            <div class="panel">
+                <div class="sidebar">
+                    <button class="tab-button active" data-tab="main"><i class="fas fa-home"></i> Main</button>
+                    <button class="tab-button" data-tab="aimbot"><i class="fas fa-crosshairs"></i> Aimbot</button>
+                    <button class="tab-button" data-tab="esp"><i class="fas fa-eye"></i> ESP/Visuals</button>
+                    <button class="tab-button" data-tab="hitbox"><i class="fas fa-expand"></i> Hitbox</button>
+                    <button class="tab-button" data-tab="player"><i class="fas fa-user"></i> Player</button>
+                    <button class="tab-button" data-tab="settings"><i class="fas fa-cog"></i> Settings</button>
+                </div>
+
+                <div class="content">
+                    <div id="main" class="tab-content active">
+                        <h2>Script Principal</h2>
+                        <p class="instructions">Configure as opções desejadas nas abas laterais e clique em "Gerar Script".</p>
+                        <button id="generateScriptBtn" class="btn primary-btn"><i class="fas fa-play"></i> Gerar Script</button>
+                        <div class="script-output-section">
+                            <textarea id="generatedScript" readonly placeholder="Seu script aparecerá aqui..."></textarea>
+                            <div class="script-actions">
+                                <button id="copyScriptBtn" class="btn secondary-btn"><i class="fas fa-copy"></i> Copiar</button>
+                                <button id="downloadScriptBtn" class="btn secondary-btn"><i class="fas fa-download"></i> Baixar</button>
+                            </div>
+                        </div>
+                        <h3>Como Usar</h3>
+                        <ol class="instructions-list">
+                            <li>Configure as opções desejadas nas abas</li>
+                            <li>Clique em "Gerar Script"</li>
+                            <li>Copie o script gerado</li>
+                            <li>Cole no seu executor (KRNL, Arceus X, Delta, Hydrogen)</li>
+                            <li>Execute no jogo Roblox</li>
+                        </ol>
+                    </div>
+
+                    <div id="aimbot" class="tab-content">
+                        <h2>Aimbot</h2>
+                        <div class="setting-item">
+                            <label for="aimbot-enabled">Ativar Aimbot</label>
+                            <input type="checkbox" id="aimbot-enabled">
+                        </div>
+                        <div class="setting-item">
+                            <label for="aimbot-fov">FOV: <span id="aimbot-fov-value">90</span>°</label>
+                            <input type="range" id="aimbot-fov" min="10" max="360" value="90">
+                        </div>
+                        <div class="setting-item">
+                            <label for="aimbot-target">Alvo Prioritário</label>
+                            <select id="aimbot-target">
+                                <option value="head">Cabeça</option>
+                                <option value="torso">Tronco</option>
+                                <option value="closest">Mais Próximo</option>
+                            </select>
+                        </div>
+                        <div class="setting-item">
+                            <label for="aimbot-smoothness">Suavidade: <span id="aimbot-smoothness-value">5</span></label>
+                            <input type="range" id="aimbot-smoothness" min="1" max="10" value="5">
+                        </div>
+                    </div>
+
+                    <div id="esp" class="tab-content">
+                        <h2>ESP & Wallhack</h2>
+                        <div class="setting-item">
+                            <label for="esp-enabled">Ativar ESP</label>
+                            <input type="checkbox" id="esp-enabled">
+                        </div>
+                        <div class="setting-item">
+                            <label for="esp-showNames">Mostrar Nomes</label>
+                            <input type="checkbox" id="esp-showNames" checked>
+                        </div>
+                        <div class="setting-item">
+                            <label for="esp-showBoxes">Mostrar Caixas</label>
+                            <input type="checkbox" id="esp-showBoxes" checked>
+                        </div>
+                        <div class="setting-item">
+                            <label for="esp-showDistance">Mostrar Distância</label>
+                            <input type="checkbox" id="esp-showDistance" checked>
+                        </div>
+                        <div class="setting-item">
+                            <label for="esp-wallhack">Wallhack</label>
+                            <input type="checkbox" id="esp-wallhack">
+                        </div>
+                        <div class="setting-item">
+                            <label for="esp-maxDistance">Distância Máxima: <span id="esp-maxDistance-value">300</span>m</label>
+                            <input type="range" id="esp-maxDistance" min="50" max="1000" value="300" step="10">
+                        </div>
+                    </div>
+
+                    <div id="hitbox" class="tab-content">
+                        <h2>Expansão de Hitbox</h2>
+                        <div class="setting-item">
+                            <label for="hitbox-enabled">Ativar Hitbox</label>
+                            <input type="checkbox" id="hitbox-enabled">
+                        </div>
+                        <div class="setting-item">
+                            <label for="hitbox-size">Tamanho: <span id="hitbox-size-value">3</span>x</label>
+                            <input type="range" id="hitbox-size" min="1" max="10" value="3" step="0.5">
+                        </div>
+                        <div class="setting-item">
+                            <label for="hitbox-expandHead">Expandir Cabeça</label>
+                            <input type="checkbox" id="hitbox-expandHead" checked>
+                        </div>
+                        <div class="setting-item">
+                            <label for="hitbox-expandTorso">Expandir Tronco</label>
+                            <input type="checkbox" id="hitbox-expandTorso" checked>
+                        </div>
+                    </div>
+
+                    <div id="player" class="tab-content">
+                        <h2>Modificações do Jogador</h2>
+                        <div class="setting-item">
+                            <label for="player-speed">Velocidade: <span id="player-speed-value">16</span></label>
+                            <input type="range" id="player-speed" min="16" max="100" value="16">
+                        </div>
+                        <div class="setting-item">
+                            <label for="player-jumpHeight">Altura do Pulo: <span id="player-jumpHeight-value">50</span></label>
+                            <input type="range" id="player-jumpHeight" min="50" max="200" value="50" step="5">
+                        </div>
+                        <div class="setting-item">
+                            <label for="player-noClip">NoClip</label>
+                            <input type="checkbox" id="player-noClip">
+                        </div>
+                        <div class="setting-item">
+                            <label for="player-fly">Voar</label>
+                            <input type="checkbox" id="player-fly">
+                        </div>
+                        <div class="setting-item">
+                            <label for="player-godMode">Modo Deus</label>
+                            <input type="checkbox" id="player-godMode">
+                        </div>
+                    </div>
+
+                    <div id="settings" class="tab-content">
+                        <h2>Configurações</h2>
+                        <div class="setting-item">
+                            <label for="auto-save">Auto-salvar Configurações</label>
+                            <input type="checkbox" id="auto-save" checked>
+                        </div>
+                        <button id="resetSettingsBtn" class="btn secondary-btn"><i class="fas fa-redo"></i> Resetar Configurações</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
